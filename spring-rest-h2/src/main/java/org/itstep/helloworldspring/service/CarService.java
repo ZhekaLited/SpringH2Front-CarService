@@ -4,9 +4,10 @@ import org.itstep.helloworldspring.Model.Car;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public   interface CarService {
+public interface CarService {
 
     // Save operation
 
@@ -16,8 +17,10 @@ public   interface CarService {
     List<Car> fetchCarList();
 
     // Update operation
-    Car updateCar(Car car, Long CarId);
+    Car updateCar(Car car , Long id);
+
+    Optional <Car> findById (Long Id);
 
     // Delete operation
-    void deleteCarById(Long CarId);
+    void deleteCarById(Long Id);
 }

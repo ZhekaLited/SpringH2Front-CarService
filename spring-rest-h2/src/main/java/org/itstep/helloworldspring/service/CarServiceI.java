@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CarServiceI implements CarService {
@@ -25,8 +26,8 @@ public class CarServiceI implements CarService {
     }
 
     @Override
-    public Car updateCar(Car car, Long carId) {
-        Car carDB = carRepository.findById(carId).get();
+    public Car updateCar(Car car, Long id) {
+        Car carDB = carRepository.findById(id).get();
 
         if (StringUtils.isNotBlank(car.getCarName())) {
             carDB.setCarName(car.getCarName());
@@ -44,7 +45,12 @@ public class CarServiceI implements CarService {
     }
 
     @Override
-    public void deleteCarById(Long carId) {
-        carRepository.deleteById(carId);
+    public Optional<Car> findById(Long id) {
+        return carRepository.findById(id);
+    }
+
+    @Override
+    public void deleteCarById(Long id) {
+        carRepository.deleteById(id);
     }
 }

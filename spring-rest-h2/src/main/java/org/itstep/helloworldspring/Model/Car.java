@@ -4,27 +4,38 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@ToString
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "car")
 public class Car {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_Id", nullable = false)
-    private Long car_Id;
+    @Column(name = "id", nullable = false)
+    private Long id;
     @Column(name = "car_Name", nullable = false)
     private String carName;
     @Column(name = "car_Color", nullable = false)
     private String carColor;
     @Column(name = "car_Model", nullable = false)
     private String carModel;
-    @JsonManagedReference
-    @OneToOne(mappedBy = "car")
-    private Country country;
 
-}
+        @Override
+        public String toString() {
+            return "Car{" + "id=" + id + ", carName=" + carName + ", carColor=" + carColor + "carModel" + carModel + '}';
+        }
+    }
+
+
+
+
+
+
